@@ -1,0 +1,31 @@
+﻿@model List<EFDBDemo.Models.Employee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form>
+        <label>Search:</label>
+        <input type="text" id="search" name="search" placeholder="search" value="@ViewBag.search" />
+        <button type="submit">Go</button>
+    </form>
+    <h2>Employee Details</h2>
+    <table width="1" border="1">
+        <tr><td>EmpID</td><td>EmpName</td></tr>
+        @foreach(var item in Model)
+        {
+            
+            <tr><td>@item.EmpId</td><td>@item.EmpName</td></tr>
+
+        }
+        
+    </table>
+</body>
+</html>

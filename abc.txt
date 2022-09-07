@@ -1,1 +1,53 @@
+using System;
+
+namespace Test
+{
+    public delegate void MyDelegate(double p, double r, double t);
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double p,r,t;
+            Console.WriteLine("Enter the principle amount:");
+            while (!double.TryParse(Console.ReadLine(), out p))
+            {
+                Console.WriteLine("principle amount must be Double type");
+            };
+            Console.WriteLine("Enter the duration:");
+            while (!double.TryParse(Console.ReadLine(), out r))
+            {
+                Console.WriteLine("duration must be Double type");
+            };
+            Console.WriteLine("Enter the interest rate:");
+            while (!double.TryParse(Console.ReadLine(), out t))
+            {
+                Console.WriteLine("interest rate must be Double type");
+            };
+            
+            //function
+            MyDelegate d1 = new MyDelegate(Print);
+            d1.Invoke(p,r,t);
+
+            //Anonymous method
+            MyDelegate d2 = delegate (double p1, double r1, double t1)
+            {
+                Console.WriteLine("Simple Interest : " + " " + p1*r1*t1/100);
+            };
+            d2.Invoke(p, r, t);
+
+            //Lambda expression
+            MyDelegate d3 = (p1, r1, t1) => Console.WriteLine("Simple Interest : " + " " + p1 * r1 * t1 / 100);
+            d3.Invoke(p, r, t);
+
+            Console.ReadLine();
+
+        }
+
+        public static void Print(double p, double r, double t)
+        {
+            Console.WriteLine("Simple Interest : " + " " + p * r * t / 100);
+        }
+
+    }
+}
 
